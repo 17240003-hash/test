@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INKWord</title>
+    <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijrh3ZV2S6jQghncgara-3m3V3XKSkm7XyKS9V7wjBEMZb_59nPLzECHztZ3hqYfAtq7I6rR4IBMqBZFdlqDpAxvgdXOGA5ScaafS-Z-J9FOsGb5TO57ZipPvg8KUxN_kfNplhwUHAIxwQ/s739/nagi.jpg">
+
+    <!-- Feather icon -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- link css -->
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: black;
+  color: #fff;
+  min-height: 6000px;
+}
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem 5%;
+  background-color: rgba(1, 1, 1, 0.8);
+  border-bottom: 1px solid rgba(27, 5, 128, 0.608);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.navbar .navbar-logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  font-style: italic;
+}
+
+.navbar .navbar-logo span {
+  color: rgb(210, 183, 30);
+}
+
+.navbar .navbar-nav a {
+  color: #fff;
+  display: inline-block;
+  font-size: 1.2rem;
+  margin: 0 1rem;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative; /* penting agar dropdown muncul di bawah tombol */
+  display: inline-block;
+}
+
+.dropdown-list {
+  display: none; /* awalnya tersembunyi */
+  position: absolute;
+  top: 100%; /* muncul tepat di bawah tombol */
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.595);
+  border: 1px solid blue;
+  border-radius: 5px;
+  min-width: 150px;
+  z-index: 999;
+}
+
+/* tampilkan dropdown saat di-hover */
+.dropdown:hover .dropdown-list {
+  display: flex;
+  padding: 10px;
+}
+
+.navbar .navbar-nav a:hover {
+  color: yellow;
+}
+
+.navbar .navbar-nav a::after {
+  content: "";
+  display: block;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid rgb(3, 41, 145);
+  transform: scaleX(0);
+  transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(0.5);
+}
+
+.navbar .navbar-icon a {
+  color: #fff;
+  margin: 0 0.5rem;
+}
+
+.navbar .navbar-icon a:hover {
+  color: yellow;
+}
+
+#hamburger-icon {
+  display: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* hero section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: url("../img/header1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(1, 1, 3, 1) 3%,
+    rgba(255, 255, 255, 0) 25%
+  );
+}
+.hero .content {
+  padding: 1.4rem 7%;
+  max-width: 60rem;
+}
+
+.hero .content h1 span {
+  color: yellow;
+}
+
+.hero .content h1 {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(1, 1, 1, 0.5);
+  line-height: 1.2;
+}
+
+.hero .content p {
+  color: #fff;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  line-height: 1.4;
+  font-weight: 100;
+  text-shadow: 1px 1px 3px rgba(1, 1, 1, 0.5);
+  mix-blend-mode: difference;
+}
+
+/* about section */
+.about,
+.menu,
+.contact {
+  padding: 8rem 5% 4rem;
+}
+
+.about h2,
+.menu h2,
+.contact h2 {
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+.about h2 span,
+.menu h2 span,
+.contact h2 span {
+  color: yellow;
+}
+
+.about .row {
+  display: flex;
+}
+
+.about .row .about-img {
+  flex: 1 1 45rem;
+}
+
+.about .row .about-img img {
+  width: 100%;
+  height: 23rem;
+}
+
+.about .row .content {
+  flex: 1 1 1 35rem;
+  padding: 0 1rem;
+}
+
+.about .row .content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.about .row .content p {
+  margin-bottom: 0.8rem;
+  font-size: 2.4rem;
+  font-weight: 100;
+  line-height: 1.6;
+}
+
+/* menu section */
+.menu h2,
+.contact h2 {
+  margin-bottom: 1rem;
+}
+
+.menu p,
+.contact p {
+  text-align: center;
+  max-width: 50rem;
+  margin: auto;
+  font-weight: 100;
+  line-height: 1.6;
+}
+
+.menu .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.menu .row .menu-card {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.menu .row .menu-card img {
+  height: 300px;
+}
+
+.menu .row .menu-card .menu-card-title {
+  margin-top: 1rem auto 0.5rem;
+  width: 300px;
+}
+
+/* contact section */
+.contact .row {
+  display: flex;
+  margin-top: 2rem;
+  background-color: #222;
+}
+
+.contact .row .map {
+  flex: 1 1 45rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.contact .row form {
+  flex: 1 1 45rem;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.contact .row form .input-group {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  background-color: #000000;
+  border: 1px solid white;
+  padding-left: 2rem;
+}
+
+.contact .row form .input-group input {
+  width: 100%;
+  padding: 2rem;
+  font-size: 1.7rem;
+  background: none;
+  color: #fff;
+}
+
+.contact .row form .btn {
+  margin-top: 3rem;
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  color: #fff;
+  background: brown;
+}
+
+/* media Queris */
+
+/* tablet */
+@media (max-width: 768px) {
+  html {
+    font-size: 62.5%;
+  }
+
+  #hamburger-icon {
+    display: inline-block;
+    color: wheat;
+  }
+  .navbar .navbar-nav {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    background-color: #000000;
+    border: 1px solid blue;
+    width: 30rem;
+    height: 100vh;
+    transition: 0.5s;
+  }
+  .navbar .navbar-nav.active {
+    right: 0;
+  }
+  .navbar .navbar-nav a {
+    color: rgb(255, 255, 255);
+    display: block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+  }
+
+  .navbar .navbar-nav a::after {
+    transform-origin: 0 0;
+  }
+
+  .dropdown:hover .dropdown-list {
+    display: block;
+    padding: 10px;
+    padding-right: 16rem;
+  }
+  .navbar .dropdown-list {
+    background-color: #000000;
+  }
+  /* masih ada yang kurang */
+
+  /* masih ada yang kurang */
+  .about .row {
+    flex-wrap: wrap;
+  }
+
+  .about .row .about-img img {
+    height: 40rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .about .row .content {
+    padding: 0;
+  }
+  .about .row .content h3 {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+  .about .row .content p {
+    font-size: 1.6rem;
+  }
+  .menu p {
+    font-size: 1.5rem;
+  }
+
+  .contact .row {
+    flex-wrap: wrap;
+  }
+
+  .contact .row .map {
+    height: 30rem;
+  }
+
+  .contact .row form {
+    padding-top: 0;
+  }
+}
+/* mobile phone */
+@media (max-width: 576px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <!-- untuk navbar -->
+    <nav class="navbar">
+      <a href="#" class="navbar-logo">Plot<span>List</span></a>
+      <div class="navbar-nav">
+        <a href="#home">BERANDA</a>
+        <a href="#about">TENTANG KAMI</a>
+        <div class="dropdown">
+          <a>KATAGORI</a>
+          <div class="dropdown-list">
+            <a href="#menu">Komik</a>
+            <a href="#novel">Novel</a>
+            <a href="#">#</a>
+          </div>
+        </div>
+        <a href="#contact">KONTAK</a>
+        <a href="#">SIGN</a>
+      </div>
+      <div class="navbar-icon">
+        <a id="hamburger-icon"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+    <!-- end navbar -->
+
+    <!-- hero section start-->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>Rekomendasi novel dan komik di INK<span>Word</span></h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, saepe
+          qui rerum quae at enim
+        </p>
+      </main>
+    </section>
+    <!-- hero section end -->
+
+    <!--about section start  -->
+    <section class="about" id="about">
+      <h2>Tentang <span>Kami</span></h2>
+      <div class="row">
+        <div class="about-img">
+          <img src="../img/komik-tentang.jpg" alt="Tentang Kami" />
+        </div>
+        <div class="content">
+          <h3>Rekomendasi novel dan komik yang menarik</h3>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa ad
+            cum consequuntur, ab excepturi laborum?
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
+            nostrum quidem in voluptatem dolores fuga eius quia quae corporis
+            odit!
+          </p>
+          <!-- <div class="about-img">
+            <img src="../img/komik-tentang.jpg" alt="Tentang Kami" />
+          </div> -->
+        </div>
+      </div>
+    </section>
+    <!-- about section end -->
+
+    <!-- menu section start -->
+    <section>
+      <div class="menu" id="menu">
+        <h2>Rekomendasi <span>Kami</span></h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
+          aliquid magni corporis ea deleniti perspiciatis?
+        </p>
+
+        <div class="row">
+          <div class="menu-card">
+            <img src="../komik/one-room.png" alt="one_room" />
+            <h3 class="menu-card-title">One Room Sachi-iro</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/Onani_Master_Kurosawa.webp"
+              alt="Onani_Master_Kurosawa"
+            />
+            <h3 class="menu-card-title">Onani Master Kurosawa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img src="../komik/mushishi.jpg" alt="mushishi" />
+            <h3 class="menu-card-title">mushishi</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/shounen no abyss.jpg"
+              alt="shounen no abyss"
+            />
+            <h3 class="menu-card-title">Boy's Abyss</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/welcome papa.jpg"
+              alt="welcome papa"
+            />
+            <h3 class="menu-card-title">welcome papa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/welcome papa.jpg"
+              alt="welcome papa"
+            />
+            <h3 class="menu-card-title">welcome papa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/welcome papa.jpg"
+              alt="welcome papa"
+            />
+            <h3 class="menu-card-title">welcome papa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/welcome papa.jpg"
+              alt="welcome papa"
+            />
+            <h3 class="menu-card-title">welcome papa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- menu section end -->
+    
+    <!-- novel section start -->
+    <section>
+      <div class="menu" id="novel">
+        <h2>Rekomendasi <span>Kami</span></h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
+          aliquid magni corporis ea deleniti perspiciatis?
+        </p>
+
+        <div class="row">
+          <div class="menu-card">
+            <img src="../novel/harry potter.jpeg" alt="one_room" height="300px" />
+            <h3 class="menu-card-title">Harry Potter</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../novel/oregairu.jpg"
+              alt="My Youth Romantic Comedy Is Wrong, As I Expected"
+              height="300px"
+            />
+            <h3 class="menu-card-title">My Youth Romantic <br> Comedy Is Wrong, br As I Expected</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img src="../komik/mushishi.jpg" alt="mushishi" height="300px" />
+            <h3 class="menu-card-title">mushishi</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/shounen no abyss.jpg"
+              alt="shounen no abyss"
+              height="300px"
+            />
+            <h3 class="menu-card-title">Boy's Abyss</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/welcome papa.jpg"
+              alt="welcome papa"
+              height="300px"
+            />
+            <h3 class="menu-card-title">welcome papa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/welcome papa.jpg"
+              alt="welcome papa"
+              height="300px"
+            />
+            <h3 class="menu-card-title">welcome papa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/welcome papa.jpg"
+              alt="welcome papa"
+              height="300px"
+            />
+            <h3 class="menu-card-title">welcome papa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+          <div class="menu-card">
+            <img
+              src="../komik/welcome papa.jpg"
+              alt="welcome papa"
+              height="300px"
+            />
+            <h3 class="menu-card-title">welcome papa</h3>
+            <p class="menu-card-price">IDR 20K</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- novel section end -->
+
+
+    <!-- contact section start -->
+    <section class="contact" id="contact">
+      <h2>Kontak <span>Kami</span></h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, expedita.
+      </p>
+
+      <div class="row">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207613.57048356617!2d139.9965518002338!3d35.604002969418865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60229ac1c8eec4df%3A0x689c0bdcac1d91e6!2sChiba%2C%20Prefektur%20Chiba%2C%20Jepang!5e0!3m2!1sid!2sid!4v1760773251851!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+
+        <form action="">
+          <div class="input-group">
+            <i data-feather="user"></i>
+            <input type="text" placeholder="nama" >
+          </div>
+          <div class="input-group">
+            <i data-feather="mail"></i>
+            <input type="text" placeholder="email" >
+          </div>
+          <div class="input-group">
+            <i data-feather="phone"></i>
+            <input type="text" placeholder="no hp" >
+          </div>
+          <button type="button" class="btn">
+            kirim pesan
+          </button>
+        </form>
+
+      </div>
+    </section>
+    <!-- contact section end -->
+     <div>
+      <a href=""></a>
+     </div>
+    <!-- footer start -->
+     <div class="social">
+     </div> 
+    <!-- footer end --> 
+      <!-- script javascript -->
+      <script src="script.js"></script>
+
+      <!-- feathar icons -->
+      <script>
+        feather.replace();
+      </script>
+    </p>
+  </body>
+</html>
